@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cut'ten</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="ui large menu">
+  <a class="active item">
+    Accueil
+  </a>
+  <a class="item">
+    Shop
+  </a>
+  <div class="right menu">
+    <div class="ui dropdown item">
+      Language <i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item">English</a>
+        <a class="item">Russian</a>
+        <a class="item">Spanish</a>
+      </div>
+    </div>
+    <div class="item">
+        <div class="ui primary button">Sign Up</div>
+    </div>
+  </div>
+</div>
+
+  
+  
+    <div class="container">
+      <% if user_signed_in? %>
+    <li>
+      <%= link_to "Se deconnecter", destroy_user_session_path, method: :delete %>
+    </li>
+    <li>
+      Voici ton email : <%= current_user.email %>, vous devriez remplir un <a href="user/editer">formulaire</a> pour plus sur votre information.
+    </li>
+    <% else %>
+    <li>    
+      <%= link_to "Se connecter", new_user_session_path %>
+    </li>
+    <li>
+      <%= link_to "S'inscrire", new_user_registration_path %>
+    </li>
+  <% end %>
+    <%= yield %>
+    </div>
+   
+</body>
+</html>
